@@ -9,7 +9,7 @@ This is the v1.0 for my school project.
 
 ## Demo
 
-![Demo](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Demo](https://raw.githubusercontent.com/ravdevman/itsup-Intranet/main/images/demo-gif.gif)
 
 
 

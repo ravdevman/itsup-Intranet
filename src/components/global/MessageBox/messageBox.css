@@ -1,0 +1,38 @@
+.messageBox {
+	position: absolute;
+	top: 10px;
+	color: var(--white);
+	border-radius: 4px;
+	padding: 1rem;
+	text-align: center;
+	left: 50%;
+	transform: translate(-50%, 0);
+	animation: slidein 0.5s ease-in;
+	z-index: 3000;
+}
+
+.errorBox {
+	background-color: var(--red);
+}
+
+.infoBox {
+	background-color: var(--blue);
+}
+
+.successBox {
+	background-color: var(--green);
+}
+
+
+@keyframes slidein {
+	from {
+	  	top: 0;
+		opacity: 0%;
+	}
+  
+	to {
+		top: 10px;
+		opacity: 100%;
+	}
+  }
+  

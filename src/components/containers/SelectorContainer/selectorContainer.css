@@ -1,0 +1,9 @@
+.selectorContainer {
+	background-color: var(--light-gray);
+	flex: 1;
+	box-sizing: content-box;
+}
+
+.add-btn {
+	margin: 10px;
+}

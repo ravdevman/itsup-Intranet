@@ -1,0 +1,20 @@
+.navbar-button {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--light-gray);
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.navbar-button:hover {
+	background-color: var(--red);
+}
+
+.navbar-button:hover .buttonInfo {
+	display: block;
+}
+

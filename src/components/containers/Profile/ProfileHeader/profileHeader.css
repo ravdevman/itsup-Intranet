@@ -1,0 +1,24 @@
+.profileHeader {
+	width: 100%;
+	height: 70px;
+	align-items: center;
+	padding: 0 30px;
+	display: flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+.profileHeader-info {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+.profileHeader-info img {
+	width: 48px;
+	height: 48px;
+	border-radius: 10px;
+}
+
+.profileHeader-info h3 {
+	margin-left: 10px;
+}

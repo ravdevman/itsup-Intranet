@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --white: #FFFFFF;
+  --black : #000000;
+  --red: #ED1C24;
+  --darker-red: #B30B10;
+  --blue: #ADD8E6;
+  --gray: #D8D8D8;
+  --light-gray: #F9F9F9;
+  --green: #BFE6AD;
+  font-size: 15px;
+}
+body {
+  height: 100vh;
+}
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  font-weight: 600;
+}
+input {
+  padding: 6px 12px;
+  height: 24px;
+  border-radius: 4px;
+  outline: none;
+  border: solid 1px var(--gray);
+  transition: 0.1s;
+}
+input:focus {
+  border: solid 1px var(--blue);
+  box-shadow: var(--blue) 0px 0px 2px 0px;
+}
+
+button {
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: var(--darker-red);
+}
+a {
+  color: var(--blue);
+  font-weight: 500;
+  font-size: small;
+}
+form {
+	display: flex;
+	flex-direction: column;
+}
+.error {
+  color: var(--darker-red);
+}
+
+.design {
+  display: table-caption;
+}
+
+.logo-modal {
+  height: 60px;
+	width: auto;
+	margin-bottom: 2rem;
+}
+img {
+  object-fit: cover;
+}
+.enter {
+  animation: enter 0.2s ease-in-out;
+}
+.exit {
+  animation: exit 0.2s ease-in-out;
+}
+.slideDown {
+  animation: slideDown 0.2s ease-in-out;
+}
+@keyframes enter {
+	from {
+		opacity: 0%;
+		transform: translate(-50px, 0);
+		overflow: hidden;
+	}
+	to {
+		opacity: 100%;
+		transform: translate(0, 0);
+	}
+}
+@keyframes exit {
+	from {
+		opacity: 0%;
+		transform: translate(50px, 0);
+		overflow: hidden;
+	}
+	to {
+		opacity: 100%;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0%;
+		transform: translate(0, -50px);
+		overflow: hidden;
+	}
+	to {
+		opacity: 100%;
+		transform: translate(0, 0);
+	}
+}

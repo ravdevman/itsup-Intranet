@@ -1,0 +1,8 @@
+.buttonInfo {
+	position: absolute;
+	left: 90px;
+	display: none;
+	background-color: var(--red);
+	padding: 2px 10px;
+	border-radius: 10px;
+}

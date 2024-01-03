@@ -1,0 +1,52 @@
+.calendar {
+	margin-left: 100px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .calendar-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	box-sizing: border-box;
+	height: 70px;
+  }
+  
+  .calendar-table {
+	width: 100%;
+	flex-grow: 1; /* Grow to fill the available space */
+	overflow: hidden; /* Hide overflow to prevent scrolling */
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+	border: 1px solid var(--gray);
+	padding: 8px;
+	text-align: center;
+  }
+  
+  .calendar-table th {
+	background-color: #f2f2f2;
+  }
+  
+  .calendar-table td {
+	height: calc((100% - 20px) / 6); /* Calculate dynamic height for each cell */
+  }
+  
+  .grayed {
+	color: var(--gray);
+  }
+  
+  .current-day {
+	background-color: var(--red);
+  }
+  
+
+@media screen and (max-width: 820px) {
+	.calendar {
+		margin-top: 80px;
+		margin-left: 0;
+	  }
+  }

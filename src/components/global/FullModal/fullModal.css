@@ -1,0 +1,31 @@
+.fullModal {
+	position: absolute;
+	z-index: 2000;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(0, 0, 0, 0.300);
+}
+
+.fullModal .modal {
+	padding: 0.5rem 1rem;
+}
+.fullModal-ajouter label {
+	margin: 5px 0 ;
+}
+
+
+.fullModal-ajouter button {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.fullModal-ajouter-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.fullModal-ajouter-title-close-btn:hover {
+	cursor: pointer;
+} 
+

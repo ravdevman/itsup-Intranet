@@ -1,0 +1,38 @@
+.selector {
+	width: auto;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	box-sizing: content-box;
+}
+
+.selector-title {
+	margin-left: 10px;
+	max-width: 250px;
+}
+
+.selector-title p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.selector:hover {
+	background-color: var(--red);
+}
+.on {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.locked {
+	background-color: var(--gray);
+	cursor: not-allowed;
+}
+
+.locked:hover {
+	background-color: var(--gray);
+}

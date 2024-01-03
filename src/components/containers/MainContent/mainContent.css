@@ -1,0 +1,10 @@
+.mainContent {
+	display: flex;
+	height: 90%;
+}
+
+.mainContent-middle {
+	flex: 3;
+	overflow-y: auto;
+	margin: 0 10px;
+}

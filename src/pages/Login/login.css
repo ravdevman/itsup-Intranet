@@ -1,0 +1,31 @@
+
+.login_layout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.login_layout input {
+	margin-bottom: 10px;
+}
+.login_layout label {
+	margin-bottom: 10px;
+}
+
+.login_layout button {
+	margin: 0 auto;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+}
+.login_input-password {
+	position: relative;
+}
+.login_input-password-eye {
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
+.login_input-password-eye:hover {
+	cursor: pointer;
+}

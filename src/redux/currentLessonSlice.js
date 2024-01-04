@@ -5,17 +5,23 @@ export const currentLessonSlice = createSlice({
 	initialState: {
 		lessonTitle: '',
 		lessonDate: '',
-		content: ''
+		content: '',
+		updatedTitle: '',
+		updatedDate: ''
 	},
 	reducers: {
 		setCurrentLesson: (state, action) => {
 			state.lessonTitle = action.payload.lessonTitle
 			state.lessonDate = action.payload.lessonDate
 			state.content = action.payload.content
+		},
+		setUpdatedInfo: (state, action) => {
+			state.updatedTitle = action.payload.updatedTitle
+			state.updatedDate = action.payload.updatedDate
 		}
 	}
 })
 
-export const { setCurrentLesson } = currentLessonSlice.actions
+export const { setCurrentLesson, setUpdatedInfo } = currentLessonSlice.actions
 
 export default currentLessonSlice.reducer

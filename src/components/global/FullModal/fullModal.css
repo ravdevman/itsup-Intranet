@@ -28,4 +28,15 @@
 .fullModal-ajouter-title-close-btn:hover {
 	cursor: pointer;
 } 
+.fullModal-delete-form {
+	text-align: center;
+}
 
+.fullModal-delete-form-btn-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.fullModal-delete-form-btn-group button {
+	margin: 10px 20px;
+}

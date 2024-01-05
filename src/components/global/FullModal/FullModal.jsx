@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './fullModal.css'
 import Modal from '../../containers/Modal/Modal'
 import Close from '../../../assets/icons/close.png'
@@ -9,7 +9,10 @@ import { displayMessage } from '../../../redux/messageBoxSlice'
 function FullModal() {
 	const dispatch = useDispatch()
 	const {subjectName} = useSelector(state => state.currentSubject)
-
+	const currentLesson = useSelector(state => state.currentLesson)
+	const type = useSelector(state => state.modal.type)
+	//const [type, setType] = useState("delete")
+	// on adding
 	function handleSubmit(e) {
 		e.preventDefault()
 		const lessonTitle = e.target.lessonTitle.value;
@@ -26,9 +29,39 @@ function FullModal() {
 			dispatch(displayMessage({message: "pas pu ajouter la lesson", type: "error"}))
 		  });
 	}
+	//validate delete lesson 
+	function handleDeleteValidated() {
+		axios.delete(`http://localhost:3000/api/lesson/delete/${currentLesson.lessonTitle}/${subjectName}`)
+		.then((response) => {
+			console.log(response.data);
+			dispatch(displayMessage({message: "Supression réussie."}))
+			dispatch(close())
+		  })
+		  .catch((error) => {
+			console.error("API request error: ", error);
+			dispatch(displayMessage({message: error.message, type: "error"}))
+			dispatch(close())
+		  });
+	}
   return (
 	<div className='fullModal'>
 		<Modal>
+			{type == 'delete' ?
+			<div className='fullModal-ajouter'>
+				<div className='fullModal-ajouter-title'>
+					<h2>Suprimer une leçon</h2>
+					<img className='fullModal-ajouter-title-close-btn' src={Close} onClick={() => dispatch(close())} />
+				</div>
+				<div className='fullModal-delete-form'>
+					<p>Voulez-vous vraiment supprimer la leçon :</p>
+					<p><strong>{currentLesson.lessonTitle}</strong> ?</p>
+					<div className='fullModal-delete-form-btn-group'>
+						<button onClick={() => dispatch(close())}>NON</button>
+						<button className='ghost-btn' onClick={handleDeleteValidated}>OUI</button>
+					</div>
+				</div>
+			</div>
+			:
 			<div className='fullModal-ajouter'>
 				<div className='fullModal-ajouter-title'>
 					<h2>Ajouter une leçon</h2>
@@ -44,6 +77,7 @@ function FullModal() {
 					<button>Ajouter</button>
 				</form>
 			</div>
+		}
 		</Modal>
 	</div>
   )

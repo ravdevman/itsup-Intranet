@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './textEditor.css'
 import axios from 'axios';
 import { displayMessage } from '../../../redux/messageBoxSlice';
+import { open } from '../../../redux/modalSlice';
 
 function TextEditor() {
 	const role = useSelector(state => state.currentUser.role)
@@ -40,6 +41,9 @@ function TextEditor() {
 			dispatch(displayMessage({message: error.message, type: "error"}))
 		  });
 	  }
+	function handleDeleteButtonClick()  {
+		dispatch(open({type : "delete"}))
+	}
 
 	function displayContent(role) {
 		if (role == 'Student') {
@@ -50,6 +54,7 @@ function TextEditor() {
 				<div className='textEditing'>
 					<ReactQuill theme="snow" value={value} onChange={setValue} modules={{toolbar: toolbarOptions }} />
 					<div className='btnContainer'>
+						<button className='ghost-btn' onClick={handleDeleteButtonClick}>Supprimer</button>
 						<button className='updatebtn' onClick={handleClick}>Modfier</button>
 					</div>
 				</div>	

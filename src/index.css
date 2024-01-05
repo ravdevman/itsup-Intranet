@@ -43,9 +43,15 @@ button {
   cursor: pointer;
   border: none;
 }
+.ghost-btn {
+  background-color: var(--white);
+  color: var(--red);
+  text-decoration: underline;
+  box-sizing: border-box;
+}
 
 button:hover {
-  background-color: var(--darker-red);
+  color: var(--black);
 }
 a {
   color: var(--blue);

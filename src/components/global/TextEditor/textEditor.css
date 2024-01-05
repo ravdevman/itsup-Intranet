@@ -17,10 +17,7 @@
 }
 
 .btnContainer {
-	margin: 5px; /* Adjust the margin as needed */
-	align-self: flex-end; /* Align to the right */
-}
-
-.updatebtn {
-	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 10px;
 }

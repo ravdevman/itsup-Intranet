@@ -20,7 +20,7 @@ function Header() {
 			  updatedDate: lessons.lessonDate,
 			})
 		  );
-		//activate the animation
+		//activate the animation 
 		setIsAnimated(true)
 		const timeoutId = setTimeout(() => {
 			setIsAnimated(false)

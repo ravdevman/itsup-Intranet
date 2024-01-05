@@ -11,6 +11,16 @@ function Header() {
 	const updatedTitleRef = useRef(lessons.lessonTitle)
 	const updatedDateRef = useRef(lessons.lessonDate)
 	useEffect(() => {
+		//set the updatedInfo
+		updatedTitleRef.current = lessons.lessonTitle
+		updatedDateRef.current = lessons.lessonDate
+		dispatch(
+			setUpdatedInfo({
+			  updatedTitle: lessons.lessonTitle,
+			  updatedDate: lessons.lessonDate,
+			})
+		  );
+		//activate the animation
 		setIsAnimated(true)
 		const timeoutId = setTimeout(() => {
 			setIsAnimated(false)
@@ -34,8 +44,8 @@ function Header() {
 			<h2>Matière</h2>
 		</div>
 		<div className={isAnimated ? 'header-middle exit' : 'header-middle'}>
-			<h3>{role == 'Teacher' ? <input type='date' onChange={handleDateChange} defaultValue={lessons.lessonDate} /> : lessons.lessonDate}</h3>
-			{role == 'Teacher' ? <input type='text' onChange={handleTitleChange} className='header-title-input' defaultValue={lessons.lessonTitle} /> :<h1> {lessons.lessonTitle}</h1>}
+			<h3>{role == 'Teacher' ? <input type='date' onChange={handleDateChange} value={updatedDateRef.current} /> : lessons.lessonDate}</h3>
+			{role == 'Teacher' ? <input type='text' onChange={handleTitleChange} className='header-title-input' value={updatedTitleRef.current} /> :<h1> {lessons.lessonTitle}</h1>}
 		</div>
 		<div className='header-right'>
 			<h2>leçons</h2>

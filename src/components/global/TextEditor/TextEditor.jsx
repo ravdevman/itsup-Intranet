@@ -9,7 +9,7 @@ import { displayMessage } from '../../../redux/messageBoxSlice';
 function TextEditor() {
 	const role = useSelector(state => state.currentUser.role)
 	const subjectName = useSelector(state => state.currentSubject.subjectName)
-	const {content, lessonTitle} = useSelector(state => state.currentLesson)
+	const {content, lessonTitle, updatedTitle, updatedDate} = useSelector(state => state.currentLesson)
 	const [value, setValue] = useState(content);
 	const dispatch = useDispatch()
 
@@ -27,10 +27,10 @@ function TextEditor() {
 	
 		['clean'],                                 // remove formatting button
 	];
-
+ 
 	function handleClick() {
 		// edit lesson
-		axios.put(`http://localhost:3000/api/lesson/update/${lessonTitle}/${subjectName}`, { value })
+		axios.put(`http://localhost:3000/api/lesson/update/${lessonTitle}/${subjectName}`, { value, updatedTitle, updatedDate })
 		  .then((response) => {
 			console.log(response.data);
 			dispatch(displayMessage({message: "Modification réussie."}))

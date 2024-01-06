@@ -49,7 +49,7 @@ function TextEditor() {
 		if (role == 'Student') {
 			return <div className='displayText' dangerouslySetInnerHTML={{ __html: content }} /> 
 		}
-		if (role == 'Teacher') {
+		if (role == 'Teacher' && lessonTitle != "") {
 			return (
 				<div className='textEditing'>
 					<ReactQuill theme="snow" value={value} onChange={setValue} modules={{toolbar: toolbarOptions }} />

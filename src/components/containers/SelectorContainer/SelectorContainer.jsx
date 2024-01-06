@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { open } from '../../../redux/modalSlice';
 
 function SelectorContainer({subjects, componentType}) {
-  const {role } = useSelector(state => state.currentUser) 
+  const {role } = useSelector(state => state.currentUser)
+  const {subjectName} = useSelector(state => state.currentSubject)
   const dispatch = useDispatch();
   // Helper functions
   const getKey = (item) => item.subjectID || item.lessonID;
@@ -19,7 +20,7 @@ function SelectorContainer({subjects, componentType}) {
         title={getTitle(subject)} 
         date={getDate(subject)}/>
       ))}
-      {role == 'Teacher' && componentType == "lesson" ?  <button className='add-btn' onClick={() => dispatch(open({type : ""}))}>Ajouter une leçon</button> : null}
+      {role == 'Teacher' && componentType == "lesson" && subjectName != "" ?   <button className='add-btn' onClick={() => dispatch(open({type : ""}))}>Ajouter une leçon</button> : null}
 	</div>
   )
 }

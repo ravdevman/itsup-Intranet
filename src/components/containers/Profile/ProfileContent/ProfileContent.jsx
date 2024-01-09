@@ -2,6 +2,7 @@ import React from 'react'
 import './profileContent.css'
 import ProfileModal from '../ProfileModal/ProfileModal'
 import { useSelector } from 'react-redux'
+import ProgressionContainer from '../ProgressionContainer/ProgressionContainer'
 
 function ProfileContent() {
 	const user = useSelector(state => state.currentUser)
@@ -12,7 +13,7 @@ function ProfileContent() {
 		<ProfileModal>
 			<div className='profileContent-image'>
 				<img src={user.profile}/>
-				
+				<input type='file' />
 			</div>
 		</ProfileModal>
 		<ProfileModal>
@@ -28,6 +29,14 @@ function ProfileContent() {
 				</form>
 			</div>
 		</ProfileModal>
+		{user.role == 'Student' ? 
+		<ProfileModal>
+			<div className='profileContent-progression'>
+				<h3 className='profileContent-title'>Progression</h3>
+				<ProgressionContainer />
+			</div>
+		</ProfileModal> : null
+		}
 		</div>
 	</div>
   )

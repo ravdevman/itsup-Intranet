@@ -1,6 +1,7 @@
 .profileModal {
 	background-color: var(--light-gray);
 	width: fit-content;
+	height: fit-content;
 	padding: 1rem;
 	border-radius: 24px;
 	margin: 10px;

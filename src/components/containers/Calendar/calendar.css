@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
   }
-  
+  /*header*/
   .calendar-header {
 	display: flex;
 	align-items: center;
@@ -13,7 +13,7 @@
 	box-sizing: border-box;
 	height: 70px;
   }
-  
+  /**all the table */
   .calendar-table {
 	width: 100%;
 	flex-grow: 1; /* Grow to fill the available space */
@@ -22,25 +22,51 @@
   
   .calendar-table th,
   .calendar-table td {
-	border: 1px solid var(--gray);
+	border: 1px solid var(--light-gray);
 	padding: 8px;
 	text-align: center;
+	position: relative;
   }
   
   .calendar-table th {
 	background-color: #f2f2f2;
+	height: 30px;
   }
-  
+
   .calendar-table td {
 	height: calc((100% - 20px) / 6); /* Calculate dynamic height for each cell */
   }
   
+  .calendar-day-container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-direction: column;
+		padding: 8px;
+		overflow: hidden;
+	}
+	/*Events styling */ 
+	.calendar-day-container-event {
+		width: 100%;
+		height: fit-content;
+		text-align: start;
+		background-color: var(--red);
+		color: var(--white);
+		border-radius: 5px;
+		padding: 2px 5px;
+		margin: 2px 0;
+	}
   .grayed {
 	color: var(--gray);
   }
   
   .current-day {
-	background-color: var(--red);
+	background-color: var(--blue);
   }
   
 

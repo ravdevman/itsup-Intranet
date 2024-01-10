@@ -28,9 +28,9 @@ function Calendar() {
   return (
     <div className='calendar enter'>
       <div className="calendar-header">
-        <button onClick={() => handleMonthChange(false)} disabled={!isAfter(currentMonth, new Date('2023-08-31'))}>Previous Month</button>
+        <button onClick={() => handleMonthChange(false)} disabled={!isAfter(currentMonth, new Date('2023-08-31'))}>Mois précédent</button>
         <h2>{format(currentMonth, 'MMMM yyyy', { locale: frLocale })}</h2>
-        <button onClick={() => handleMonthChange(true)} disabled={!isBefore(currentMonth, new Date('2024-08-01'))}>Next Month</button>
+        <button onClick={() => handleMonthChange(true)} disabled={!isBefore(currentMonth, new Date('2024-08-01'))}>Mois prochain</button>
       </div>
       <table className='calendar-table'>
         <thead>
@@ -55,7 +55,12 @@ function Calendar() {
             <tr key={rowIndex} className={`row-${rowIndex + 1}`}>
               {row.map((day, dayIndex) => (
                 <td key={dayIndex} className={`${!isSameMonth(day, currentMonth) ? 'grayed' : ''} ${isToday(day) ? 'current-day' : ''}`}>
-                  {format(day, 'd')}
+                  {<div className='calendar-day-container'>
+                    {format(day, 'd')} {/* 
+                    <div className='calendar-day-container-event'>Vacance</div>
+                    <div className='calendar-day-container-event'>Vacance</div>
+                    <div className='calendar-day-container-event'>Vacance</div> */}
+                  </div>}
                 </td>
               ))}
             </tr>

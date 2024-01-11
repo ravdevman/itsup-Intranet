@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './calendar.css';
-import { startOfWeek, endOfWeek, eachDayOfInterval, format, startOfMonth, endOfMonth, addMonths, subMonths, isSameMonth, isToday, isAfter, isBefore } from 'date-fns';
+import { startOfWeek, endOfWeek, isSameDay, eachDayOfInterval, format, startOfMonth, endOfMonth, addMonths, subMonths, isSameMonth, isToday, isAfter, isBefore } from 'date-fns';
 import frLocale from 'date-fns/locale/fr';
+import axios from 'axios';
 
 function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [events, setEvents] = useState([]);
+  // get the events 
+  useEffect(() => {
+        const year = currentMonth.getFullYear();
+        const month = currentMonth.getMonth() + 1;
+        axios.get("http://localhost:3000/api/events", 
+        {
+          params: {month, year}
+        }).then((response) => {
+          setEvents(response.data.events);
+          })
+          .catch((error) => {
+          console.error("API request error: ", error);
+          });
+      }, [currentMonth])
 
   // Function to get an array of days in the current month
   const getDaysInMonth = () => {
@@ -56,10 +72,13 @@ function Calendar() {
               {row.map((day, dayIndex) => (
                 <td key={dayIndex} className={`${!isSameMonth(day, currentMonth) ? 'grayed' : ''} ${isToday(day) ? 'current-day' : ''}`}>
                   {<div className='calendar-day-container'>
-                    {format(day, 'd')} {/* 
-                    <div className='calendar-day-container-event'>Vacance</div>
-                    <div className='calendar-day-container-event'>Vacance</div>
-                    <div className='calendar-day-container-event'>Vacance</div> */}
+                    {format(day, 'd')} {events
+                    .filter((event) => isSameDay(new Date(event.eventDate), day))
+                    .map((event) => (
+                      <div key={event.eventID} className='calendar-day-container-event'>
+                        <span>{event.eventTitle}</span>
+                      </div>
+                    ))}
                   </div>}
                 </td>
               ))}

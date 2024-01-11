@@ -52,7 +52,7 @@
 	}
 	/*Events styling */ 
 	.calendar-day-container-event {
-		width: 100%;
+		width: 95%;
 		height: fit-content;
 		text-align: start;
 		background-color: var(--red);
@@ -60,6 +60,7 @@
 		border-radius: 5px;
 		padding: 2px 5px;
 		margin: 2px 0;
+		cursor: pointer;;
 	}
   .grayed {
 	color: var(--gray);

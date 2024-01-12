@@ -66,6 +66,10 @@ form {
 .error {
   color: var(--darker-red);
 }
+.info {
+  margin: 10px;
+  color: var(--dark-gray);
+}
 
 .design {
   display: table-caption;

@@ -21,6 +21,7 @@ function SelectorContainer({subjects, componentType}) {
         date={getDate(subject)}/>
       ))}
       {role == 'Teacher' && componentType == "lesson" && subjectName != "" ?   <button className='add-btn' onClick={() => dispatch(open({type : ""}))}>Ajouter une leçon</button> : null}
+      {componentType == "lesson" && subjectName == "" ? <p className='info'>Aucune matière n'est sélectionner</p> : null}
 	</div>
   )
 }

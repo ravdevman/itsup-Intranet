@@ -13,7 +13,7 @@ function ProfileHeader() {
       <img src={user.profile} />
       <h3>{user.name + " " +  user.lastname}</h3>
     </div>
-    <button onClick={() => { dispatch(logout()); dispatch(displayMessage({message: 'Déconnexion réussie.'}))}}>Se Deconnecter</button>
+    <button onClick={() => { dispatch(logout()); dispatch(displayMessage({message: 'Déconnexion réussie.'})); window.location.reload(false)}}>Se Deconnecter</button>
   </div>
   )
 }

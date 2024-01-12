@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { close } from '../../../redux/modalSlice'
 import axios from 'axios'
 import { displayMessage } from '../../../redux/messageBoxSlice'
+import { refresh } from '../../../redux/refreshSlice'
 function FullModal() {
 	const dispatch = useDispatch()
 	const {subjectName} = useSelector(state => state.currentSubject)
@@ -25,6 +26,7 @@ function FullModal() {
 		.then(function (response) {
 			dispatch(displayMessage({message: "Lesson ajoute avec succes"}))
 			dispatch(close())
+			dispatch(refresh())
 		  }).catch(function (error) {
 			dispatch(displayMessage({message: "pas pu ajouter la lesson", type: "error"}))
 		  });
@@ -36,6 +38,7 @@ function FullModal() {
 			console.log(response.data);
 			dispatch(displayMessage({message: "Supression réussie."}))
 			dispatch(close())
+			dispatch(refresh())
 		  })
 		  .catch((error) => {
 			console.error("API request error: ", error);

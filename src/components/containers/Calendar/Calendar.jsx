@@ -3,6 +3,7 @@ import './calendar.css';
 import { startOfWeek, endOfWeek, isSameDay, eachDayOfInterval, format, startOfMonth, endOfMonth, addMonths, subMonths, isSameMonth, isToday, isAfter, isBefore } from 'date-fns';
 import frLocale from 'date-fns/locale/fr';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -13,7 +14,7 @@ function Calendar() {
         const month = currentMonth.getMonth() + 1;
         axios.get("http://localhost:3000/api/events", 
         {
-          params: {month, year}
+          params: {month, year} 
         }).then((response) => {
           setEvents(response.data.events);
           })

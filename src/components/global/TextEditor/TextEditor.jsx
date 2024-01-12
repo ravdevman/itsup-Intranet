@@ -6,6 +6,7 @@ import './textEditor.css'
 import axios from 'axios';
 import { displayMessage } from '../../../redux/messageBoxSlice';
 import { open } from '../../../redux/modalSlice';
+import { refresh } from '../../../redux/refreshSlice';
 
 function TextEditor() {
 	const role = useSelector(state => state.currentUser.role)
@@ -35,6 +36,7 @@ function TextEditor() {
 		  .then((response) => {
 			console.log(response.data);
 			dispatch(displayMessage({message: "Modification réussie."}))
+			dispatch(refresh())
 		  })
 		  .catch((error) => {
 			console.error("API request error: ", error);
@@ -47,7 +49,8 @@ function TextEditor() {
 
 	function displayContent(role) {
 		if (role == 'Student') {
-			return <div className='displayText' dangerouslySetInnerHTML={{ __html: content }} /> 
+			if (content)
+				return <div className='displayText' dangerouslySetInnerHTML={{ __html: content }} />
 		}
 		if (role == 'Teacher' && lessonTitle != "") {
 			return (

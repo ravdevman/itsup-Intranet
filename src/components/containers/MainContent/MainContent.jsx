@@ -3,7 +3,8 @@ import './mainContent.css'
 import SelectorContainer from '../SelectorContainer/SelectorContainer'
 import TextEditor from '../../global/TextEditor/TextEditor'
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { stopRefresh } from '../../../redux/refreshSlice';
 
 function MainContent() {
 	const currentSubject = useSelector(state => state.currentSubject.subjectName)
@@ -11,7 +12,8 @@ function MainContent() {
 	const departmentID = user.departmentID;
 	const [subjects, setSubjects] = useState([]);
 	const [lessons, setLessons] = useState([]);
-	
+	const refresh = useSelector(state => state.refresh)
+	const dispatch = useDispatch()
 	//fetch subject depend of its a student or teacher
 	useEffect(() => {
 		if (user.role == 'Student'){
@@ -41,13 +43,17 @@ function MainContent() {
 	useEffect(() => {
 		axios.get(`http://localhost:3000/api/lessons?subjectName=${currentSubject}`)
 		.then((response) => {
-			setLessons(response.data.lessons);
-			console.log(response.data.lessons)
+			const sortedLessons = response.data.lessons.sort((a, b) => {
+				return a.lessonDate.localeCompare(b.lessonDate);
+			});
+			setLessons(sortedLessons);
+			console.log(sortedLessons)
+			dispatch(stopRefresh())
 		  })
 		  .catch((error) => {
 			console.error("API request error: ", error);
 		  });
-	}, [currentSubject])
+	}, [currentSubject, refresh])
 
   return (
 	<div className='mainContent'>

@@ -4,6 +4,7 @@ import currentLessonReducer from './currentLessonSlice'
 import currentUserReducer from './currentUserSlice'
 import messageBoxReducer from './messageBoxSlice'
 import modalReducer from './modalSlice'
+import refreshReducer from './refreshSlice'
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
   currentLesson: currentLessonReducer,
   currentUser: currentUserReducer,
   messageBox: messageBoxReducer,
-  modal: modalReducer
+  modal: modalReducer,
+  refresh: refreshReducer
   }
 })

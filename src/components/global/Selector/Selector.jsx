@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentSubject } from '../../../redux/currentSubjectSlice'
 import { setCurrentLesson } from '../../../redux/currentLessonSlice'
 import axios from 'axios'
+import { refresh } from '../../../redux/refreshSlice'
 
 function Selector({title, date ,  componentType, onClick}) {
 
@@ -29,6 +30,7 @@ function Selector({title, date ,  componentType, onClick}) {
   function handleClick() {
     if (componentType != 'lesson') {
       //if its a subject
+      dispatch(refresh())
       dispatch(setCurrentSubject(title))
     } else {
       //if its a lesson and its not locked

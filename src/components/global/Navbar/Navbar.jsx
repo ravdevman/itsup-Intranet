@@ -44,7 +44,7 @@ function Navbar() {
 		{displayButtons(role)}
 		<div className='navbar-info'>
 			<img className='navbar-profil btn' src={profile} onClick={() => navigate("/profile")}/>
-			<img className='navbar-logout btn' src={Logout} onClick={() =>{ dispatch(logout()); dispatch(displayMessage({message: 'Déconnexion réussie.'}))} } />
+			<img className='navbar-logout btn' src={Logout} onClick={() =>{  dispatch(logout()); dispatch(displayMessage({message: 'Déconnexion réussie.'})); window.location.reload(false);} } />
 		</div>
 	</nav>
   )

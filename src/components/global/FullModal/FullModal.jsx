@@ -59,8 +59,8 @@ function FullModal() {
 					<p>Voulez-vous vraiment supprimer la leçon :</p>
 					<p><strong>{currentLesson.lessonTitle}</strong> ?</p>
 					<div className='fullModal-delete-form-btn-group'>
-						<button onClick={() => dispatch(close())}>NON</button>
-						<button className='ghost-btn' onClick={handleDeleteValidated}>OUI</button>
+						<button onClick={handleDeleteValidated}>Suprimer</button>
+						<button className='ghost-btn' onClick={() => dispatch(close())} >Annuler</button>
 					</div>
 				</div>
 			</div>

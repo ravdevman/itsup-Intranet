@@ -30,3 +30,20 @@
 	align-items: flex-end;
 	flex: 1;
 }
+
+@media screen and (max-width: 820px) {
+	.header {
+		font-size: small;
+		text-align: center;
+	}
+	.header h1 {
+		padding: 0 10px;
+		font-size: 20px;
+	}
+	.header h2 {
+		font-size: 16px;
+	}
+	.header-title-input {
+		width: 70%;
+	}
+  }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './header.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUpdatedInfo } from '../../../redux/currentLessonSlice'
-
+ 
 function Header() {
 	const lessons = useSelector(state => state.currentLesson)
 	const [isAnimated, setIsAnimated] = useState(false)

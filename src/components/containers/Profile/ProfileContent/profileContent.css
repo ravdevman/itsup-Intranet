@@ -45,3 +45,12 @@
 	cursor: not-allowed;
 	color: var(--black);
 }
+
+@media screen and (max-width: 820px) {
+	.profileContent-container {
+		margin-bottom: 50vh;
+	}
+	.profileContent-details {
+		width: auto;
+	}
+}

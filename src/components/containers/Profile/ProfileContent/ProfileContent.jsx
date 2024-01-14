@@ -49,7 +49,7 @@ function ProfileContent() {
 		<div className='profileContent-container'>
 		<ProfileModal>
 			<div className='profileContent-image'>
-				<img src={user.profile}/>
+				<img src={imageUploaded ? URL.createObjectURL(imageUploaded) : user.profile}/>
 				<input type='file' onChange={(e) => setImageUploaded(e.target.files[0])}/>
 				{imageUploaded ? <button disabled={isUploadBtnDisabled} className={isUploadBtnDisabled ? 'profileContent-image-btn btn-disabled' : 'profileContent-image-btn'} onClick={handleUploadImage}>valider</button> : null}
 			</div>

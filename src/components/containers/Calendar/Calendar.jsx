@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './calendar.css';
-import { startOfWeek, endOfWeek, isSameDay, eachDayOfInterval, format, startOfMonth, endOfMonth, addMonths, subMonths, isSameMonth, isToday, isAfter, isBefore } from 'date-fns';
+import { isWithinInterval, startOfWeek, endOfWeek, isSameDay, eachDayOfInterval, format, startOfMonth, endOfMonth, addMonths, subMonths, isSameMonth, isToday, isAfter, isBefore } from 'date-fns';
 import frLocale from 'date-fns/locale/fr';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -73,8 +73,9 @@ function Calendar() {
               {row.map((day, dayIndex) => (
                 <td key={dayIndex} className={`${!isSameMonth(day, currentMonth) ? 'grayed' : ''} ${isToday(day) ? 'current-day' : ''}`}>
                   {<div className='calendar-day-container'>
-                    {format(day, 'd')} {events
-                    .filter((event) => isSameDay(new Date(event.eventDate), day))
+                    {format(day, 'd')} 
+                    {events
+                    .filter((event) => isSameDay(new Date(event.eventStartDate), day))
                     .map((event) => (
                       <div key={event.eventID} className='calendar-day-container-event'>
                         <span>{event.eventTitle}</span>

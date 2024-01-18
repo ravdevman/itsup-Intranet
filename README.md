@@ -1,13 +1,13 @@
 
 # IT-Sup INRANET
 
-This is the v1.0 for my school project.
+This is the v1.2 for my school project.
 
 
 
 
 
-## Demo
+## Demo of the early version
 
 ![Demo](https://raw.githubusercontent.com/ravdevman/itsup-Intranet/main/images/demo-gif.gif)
 

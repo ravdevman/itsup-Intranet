@@ -15,6 +15,7 @@ import {Provider} from 'react-redux'
 import store from './redux/store'
 import App from './App';
 import Profile from './components/containers/Profile/Profile';
+import Grades from './components/global/grades/Grades';
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />
+      },
+      {
+        path: "grades",
+        element: <Grades />
       }
     ],
   },

@@ -6,6 +6,8 @@ import Logout from '../../../assets/icons/logout.png'
 import Calendar from '../../../assets/icons/calendar.png'
 import StudentCenter from '../../../assets/icons/student-center.png'
 import TeacherEdit from '../../../assets/icons/exercice.png'
+import TeacherGrade from '../../../assets/icons/teacher-grade.png'
+import StudentGrade from '../../../assets/icons/student-grade.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../../redux/currentUserSlice'
@@ -23,6 +25,7 @@ function Navbar() {
 				<ul className='navbar-container-buttons'>
 					<li><NavbarButton image={Calendar} onClick={() => navigate("/calendar")} label="Calendrier"/></li>
 					<li><NavbarButton image={StudentCenter} onClick={() => navigate("/courses")} label="Cours"/></li>
+					<li><NavbarButton image={StudentGrade} onClick={() => navigate("/grades")} label="Notes"/></li>
 				</ul>
 			)
 		}
@@ -31,6 +34,7 @@ function Navbar() {
 				<ul className='navbar-container-buttons'>
 					<li><NavbarButton image={Calendar} onClick={() => navigate("/calendar")} label="Calendrier"/></li>
 					<li><NavbarButton image={TeacherEdit} onClick={() => navigate("/courses")} label="Cours"/></li>
+					<li><NavbarButton image={TeacherGrade} onClick={() => navigate("/grades")} label="Notation"/></li>
 				</ul>
 			)
 		}

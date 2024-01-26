@@ -1,0 +1,48 @@
+.grades-container {
+	margin-left: 100px;
+	width: 100%;
+}
+
+.grades-teacher-container {
+	display: flex;
+	height: 100%;
+	padding: 0 2rem;
+}
+
+.grades-teacher-container label {
+	margin-top: 1rem;
+} 
+.grades-teacher-container button {
+	margin-top: 1rem;
+	width: max-content;
+} 
+
+.grades-teacher-container-sort-section {
+	flex: 50%;
+	display: flex;
+	flex-direction: column;
+}
+
+.grades-teacher-container-list-section {
+	flex: 50%;
+}
+
+.grades-teacher-container-list-section tr, th, td {
+	text-align: left;
+}
+
+
+
+@media screen and (max-width: 820px) {
+	.grades-container {
+		margin-top: 80px;
+		margin-left: 0;
+		overflow-y: scroll;
+	  }
+	.grades-teacher-container {
+		flex-direction: column;
+	}
+	select {
+		width: 100%;
+	}
+  }

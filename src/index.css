@@ -31,6 +31,15 @@ input {
   border: solid 1px var(--gray);
   transition: 0.1s;
 }
+select {
+  padding: 6px 12px;
+  background-color: var(--white);
+  border-radius: 4px;
+  outline: none;
+  border: solid 1px var(--gray);
+  width: 50%;
+}
+
 input:focus {
   border: solid 1px var(--blue);
   box-shadow: var(--blue) 0px 0px 2px 0px;
@@ -43,6 +52,7 @@ button {
   padding: 6px 12px;
   cursor: pointer;
   border: none;
+  transition-duration: 0.2s;
 }
 .ghost-btn {
   background-color: var(--white);
@@ -54,6 +64,11 @@ button {
 button:hover {
   color: var(--black);
 }
+
+button:active {
+  color: var(--black);
+  background-color: var(--white);
+}
 a {
   color: var(--blue);
   font-weight: 500;
@@ -63,6 +78,20 @@ form {
 	display: flex;
 	flex-direction: column;
 }
+
+th,
+td {
+border: 1px solid var(--light-gray);
+padding: 8px;
+text-align: center;
+position: relative;
+}
+
+th {
+background-color: #f2f2f2;
+height: fit-content;
+}
+
 .error {
   color: var(--darker-red);
 }

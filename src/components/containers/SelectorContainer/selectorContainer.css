@@ -39,6 +39,7 @@
 		transition-duration: 1s;
 	  }
 	.selectorContainer-subject {
+		z-index: 1000;
 		left: -238px;
 	}
 	.selectorContainer-subject.maximized {

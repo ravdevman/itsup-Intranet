@@ -25,22 +25,37 @@ function Grades() {
 	const [selectedOptions, setSelectedOptions] = useState({});
 	const [studentsList, setStudentsList] = useState([])
 	const [grades, setGrades] = useState({})
+	const [subjects , setSubjects] = useState([])
 
 	// get the options
 	useEffect(() => {
-		axios.get('http://localhost:3000/api/grades/options', {
-			params: {
-				userID: user.userID
-			  }
-		}).then((res) => {
-			setOptions(res.data)
-			        // If departments are available, trigger handleDepartmentChange to get classes dynamicly
-					if (res.data.departments.length > 0) {
-						handleDepartmentChange({ target: { value: res.data.departments[0] } });
-					}
-		}).catch((err) => {
-			console.error("API request error: ", err);
-		})
+
+		if (user.role == "Teacher") {
+			axios.get('http://localhost:3000/api/grades/options', {
+				params: {
+					userID: user.userID
+				}
+			}).then((res) => {
+				setOptions(res.data)
+						// If departments are available, trigger handleDepartmentChange to get classes dynamicly
+						if (res.data.departments.length > 0) {
+							handleDepartmentChange({ target: { value: res.data.departments[0] } });
+						}
+			}).catch((err) => {
+				console.error("API request error: ", err);
+			})
+		}
+		if (user.role == "Student") {
+			axios.get('http://localhost:3000/api/grades/student/subjects', {
+				params: {
+					departmentID: user.departmentID
+				}
+			}).then((res) => {
+				setSubjects(res.data.subjects)
+			}).catch((err) => {
+				console.error("API request error: ", err);
+			})
+		}
 	}, [])
 
 
@@ -68,6 +83,7 @@ function Grades() {
 			}
 		}).then(res => {
 			setStudentsList(res.data.students)
+			console.log("the student list is :", res.data.students)
 			setGrades({})
 			setSelectedOptions({
 				examID: exams.value,
@@ -165,7 +181,55 @@ const displayGradeSection = () => {
 		)
 	}
 	if (user.role == "Student") {
-		return (<div>im a student</div>)
+		return (
+			<div className='grades-student-container'>
+				<div className='grades-student-container-report'>
+					<div className='grades-student-container-report-details'>
+						<h2>Details :</h2>
+						<form>
+							<div className='details-info-container'>
+								<label>ID</label >
+								<input type='text' readOnly value={user.userID} />
+							</div>
+							<div className='details-info-container'>
+								<label>Nom et Prenom</label>
+								<input type='text' readOnly value={user.name + " " + user.lastname}/>
+							</div>
+							<div className='details-info-container'>
+								<label>Annee</label>
+								<input type='text' readOnly value={user.yearID} />
+							</div>
+							<div className='details-info-container'>
+								<label>Departement</label>
+								<input type='text' readOnly value={user.yearID} />
+							</div>
+							<div className='details-info-container'>
+								<label>la class</label>
+								<input type='text' readOnly value={user.yearID} />
+							</div>
+						</form>
+					</div>
+					<div className='grades-student-container-report-table'>
+						<table>
+							<tr>
+								<th>Matier</th>
+								<th>Evaluation N1</th>
+								<th>Evaluation N2</th>
+								<th>evaluation final</th>
+							</tr>
+							{subjects.map((subject, index) => (
+									<tr key={index}>
+										<th>{subject.subjectName}</th>
+										<td>0</td>
+										<td>0</td>
+										<td>0</td>
+									</tr>
+								))}
+						</table>
+					</div>
+				</div>
+			</div>
+		)
 	}
 }
   return (

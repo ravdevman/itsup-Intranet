@@ -10,6 +10,7 @@ export const currentUserSlice = createSlice({
 		yearID: '',
 		departmentID: '',
 		profile: '',
+		classID: '',
 		email: ''
 	},
 	reducers: {
@@ -21,6 +22,7 @@ export const currentUserSlice = createSlice({
 			state.yearID = action.payload.yearID
 			state.departmentID = action.payload.departmentID
 			state.profile = action.payload.profile
+			state.classID = action.payload.classID
 			state.email = action.payload.email
 		},
 		logout: (state) => {
@@ -31,6 +33,7 @@ export const currentUserSlice = createSlice({
 			state.yearID = '';
 			state.departmentID = '';
 			state.profile = '';
+			state.classID = '';
 			state.email = ''
 		}
 	}

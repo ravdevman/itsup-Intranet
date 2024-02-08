@@ -48,10 +48,10 @@ function Grades() {
 		if (user.role == "Student") {
 			axios.get('http://localhost:3000/api/grades/student/subjects', {
 				params: {
-					departmentID: user.departmentID
+					userID: user.userID
 				}
 			}).then((res) => {
-				setSubjects(res.data.subjects)
+				setSubjects(res.data.student)
 			}).catch((err) => {
 				console.error("API request error: ", err);
 			})
@@ -201,11 +201,11 @@ const displayGradeSection = () => {
 							</div>
 							<div className='details-info-container'>
 								<label>Departement</label>
-								<input type='text' readOnly value={user.yearID} />
+								<input type='text' readOnly value={user.departmentID} />
 							</div>
 							<div className='details-info-container'>
 								<label>la class</label>
-								<input type='text' readOnly value={user.yearID} />
+								<input type='text' readOnly value={user.classID} />
 							</div>
 						</form>
 					</div>
@@ -220,9 +220,9 @@ const displayGradeSection = () => {
 							{subjects.map((subject, index) => (
 									<tr key={index}>
 										<th>{subject.subjectName}</th>
-										<td>0</td>
-										<td>0</td>
-										<td>0</td>
+										<td>{subject.exam1}</td>
+										<td>{subject.exam2}</td>
+										<td>{subject.exam3}</td>
 									</tr>
 								))}
 						</table>

@@ -52,13 +52,16 @@ function Grades() {
 				}
 			}).then((res) => {
 				setSubjects(res.data.student)
+				console.log(res.data.student)
 			}).catch((err) => {
 				console.error("API request error: ", err);
 			})
 		}
 	}, [])
 
-
+	useEffect(() => {
+		console.log('IM the grades : ', grades);
+	}, [grades])
 	// get classes 
 	function handleDepartmentChange(e) {
 		const departmentName = e.target.value;
@@ -76,12 +79,14 @@ function Grades() {
 	function handleSubmitSearch(e) {
 		e.preventDefault();
 		const { classes, exams, subjects } = e.target
-
+		const body = {
+			className: classes.value,
+			examID: exams.value,
+			subjectName: subjects.value
+		}
 		axios.get('http://localhost:3000/api/grades/options/students', {
-			params: {
-				className: classes.value
-			}
-		}).then(res => {
+			params: body
+		} ).then(res => {
 			setStudentsList(res.data.students)
 			console.log("the student list is :", res.data.students)
 			setGrades({})
@@ -161,6 +166,7 @@ const displayGradeSection = () => {
 					<th>Nom et Prenom</th>
 					<th>Note</th>
 				</tr>
+				{console.log(studentsList)}
 				{studentsList.length > 0 ? studentsList.map(student => 
 				<tr>
 					<td>{student.userID}</td>
@@ -197,15 +203,15 @@ const displayGradeSection = () => {
 							</div>
 							<div className='details-info-container'>
 								<label>Annee</label>
-								<input type='text' readOnly value={user.yearID} />
+								<input type='text' readOnly value={user.yearName} />
 							</div>
 							<div className='details-info-container'>
 								<label>Departement</label>
-								<input type='text' readOnly value={user.departmentID} />
+								<input type='text' readOnly value={user.departmentName} />
 							</div>
 							<div className='details-info-container'>
 								<label>la class</label>
-								<input type='text' readOnly value={user.classID} />
+								<input type='text' readOnly value={user.className} />
 							</div>
 						</form>
 					</div>

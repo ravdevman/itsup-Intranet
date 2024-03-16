@@ -6,16 +6,16 @@ function ProgressionMilestone({icon, title, state, separator = false}) {
 
 	const getState = () => {
 		if (state === 'done') {
-			return 'progressionMilestone-image milestone-done';
+			return 'progressionMilestone-image milestone-done glow';
 		  } else if (state === 'in-progress') {
-			return 'progressionMilestone-image milestone-in-progress';
+			return 'progressionMilestone-image milestone-in-progress glow2';
 		  } else {
-			return 'progressionMilestone-image';
+			return 'progressionMilestone-image slow-fade';
 		  }
 	}
   return (
 	<div className='progressionMilestone-container'>
-		<div className='progressionMilestone'>
+		<div className='progressionMilestone' style={{overflow: 'hidden'}}>
 			<div className={getState()}>
 				<img src={state === 'done' ? Approval : icon} />
 			</div>
@@ -24,7 +24,7 @@ function ProgressionMilestone({icon, title, state, separator = false}) {
 			</div>
 		</div>
 		{separator == true ?
-			<div className={state === 'done' ? 'progressionMilestone-separator separator-done' : 'progressionMilestone-separator'}></div> : null
+			<div className={state === 'done' ? 'progressionMilestone-separator separator-done glow1' : 'progressionMilestone-separator slow-fade'}></div> : null
 		}
 	</div>
   )

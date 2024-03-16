@@ -1,0 +1,42 @@
+.calendar-modal-container {
+	position: absolute;
+	z-index: 2000;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(0, 0, 0, 0.300);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.calendar-modal-event-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 5px;
+	padding-bottom: 10px;
+}
+.calendar-modal-event-container img {
+	object-fit: scale-down;
+	background-color: var(--light-gray);
+	border-radius: 5px;
+}
+
+.calendar-modal-event-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+}
+
+.calendar-modal-event-info img{
+	opacity: 50%;
+}
+
+.calendar-modal-event-info p {
+	margin: 1rem 0;
+	color: var(--dark-gray);
+	margin-left: 20px;
+}

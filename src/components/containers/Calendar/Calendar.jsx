@@ -4,10 +4,13 @@ import { isWithinInterval, startOfWeek, endOfWeek, isSameDay, eachDayOfInterval,
 import frLocale from 'date-fns/locale/fr';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import CalendarModal from './CalendarModal/CalendarModal';
 
 function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [currentEvent, setCurrentEvent] = useState()
   // get the events 
   useEffect(() => {
         const year = currentMonth.getFullYear();
@@ -42,8 +45,24 @@ function Calendar() {
     }
   };
 
+  const handleOpenModal = (eventID) => {
+    axios.get("http://localhost:3000/api/event", 
+    {
+      params: {eventID} 
+    }).then((response) => {
+      setCurrentEvent(response.data.event[0]);
+      setIsModalOpen(true)
+      })
+      .catch((error) => {
+      console.error("API request error: ", error);
+      });
+  }
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
   return (
     <div className='calendar enter'>
+      {isModalOpen && <CalendarModal closeModal={handleCloseModal} currentEvent={currentEvent} />}
       <div className="calendar-header">
         <button onClick={() => handleMonthChange(false)} disabled={!isAfter(currentMonth, new Date('2023-08-31'))}>Mois précédent</button>
         <h2>{format(currentMonth, 'MMMM yyyy', { locale: frLocale })}</h2>
@@ -77,7 +96,7 @@ function Calendar() {
                     {events
                     .filter((event) => isSameDay(new Date(event.eventStartDate), day))
                     .map((event) => (
-                      <div key={event.eventID} className='calendar-day-container-event'>
+                      <div key={event.eventID} onClick={() => handleOpenModal(event.eventID)} className='calendar-day-container-event'>
                         <span>{event.eventTitle}</span>
                       </div>
                     ))}

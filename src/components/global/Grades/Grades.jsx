@@ -4,7 +4,7 @@ import GradesHeader from './GradesHeader/GradesHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 import { displayMessage } from '../../../redux/messageBoxSlice';
-
+import LoadingIndicator from '../../../assets/animated/loading-indicator.gif';
 function Grades() {
 	const user = useSelector(state => state.currentUser)
 	const dispatch = useDispatch()
@@ -79,6 +79,7 @@ function Grades() {
 	function handleSubmitSearch(e) {
 		e.preventDefault();
 		const { classes, exams, subjects } = e.target
+		console.log('the class ID :', classes.value)
 		const body = {
 			className: classes.value,
 			examID: exams.value,
@@ -93,6 +94,7 @@ function Grades() {
 			setSelectedOptions({
 				examID: exams.value,
 				subjectName: subjects.value,
+				className: classes.value,
 			})
 		}).catch(err => {
 			console.error("API request error: ", err);
@@ -100,21 +102,51 @@ function Grades() {
 	}
 	// geting grades from the inputs 
 	function handleInputChange(userID , value) {
-		setGrades(prevGrade => ({
-			...prevGrade,
-			[userID]: value
-		}))
+
+		const isNumeric = /^\d*$/.test(value);
+		if (isNumeric && value <= 20) {
+			setGrades(prevGrade => ({
+				...prevGrade,
+				[userID]: value
+			}))
+		} else {
+			const userGrade = grades[userID];
+			if (userGrade !== undefined && userGrade === value.substring(1)) {
+				setGrades(prevGrade => ({
+					...prevGrade,
+					[userID]: ""
+				}));
+			}
+			dispatch(displayMessage({message: "La note doit étre de type numérique et inferieur ou égal à 20", type: "error"}))
+		}
 		console.log(grades)
 	}
 	// when clicked on the grading button
+	console.log('the selected options :', selectedOptions)
 	function handleGrading() {
 		axios.post('http://localhost:3000/api/grades/insert', grades, {
 			params: {
 				examID: selectedOptions.examID,
-				subjectName: selectedOptions.subjectName
+				subjectName: selectedOptions.subjectName,
+				className: selectedOptions.className
 			} }).then(res => {
 				console.log(res)
 				dispatch(displayMessage({message: "Notes ajouter avec succes."}))
+				const body = {
+					className: selectedOptions.className,
+					examID: selectedOptions.examID,
+					subjectName: selectedOptions.subjectName
+				}
+				axios.get('http://localhost:3000/api/grades/options/students', {
+					params: body
+				} ).then(res => {
+					setStudentsList(res.data.students)
+					console.log("the student list is :", res.data.students)
+					setGrades({})
+				}).catch(err => {
+					console.error("API request error: ", err);
+				}) 
+
 			}).catch(err => {
 				console.error("API request error: ", err);
 			})
@@ -156,7 +188,7 @@ const displayGradeSection = () => {
 
 					<button>Rechercher</button>
 				</form>
-
+				{/*<img src={LoadingIndicator} height={64} width={64} />*/}
 			</div>
 			<div className='grades-teacher-container-list-section'>
 				<h2>List :</h2>
@@ -171,7 +203,7 @@ const displayGradeSection = () => {
 				<tr>
 					<td>{student.userID}</td>
 					<td>{student.name + " " + student.lastname}</td>
-					<td>{student.grade ? <p>{student.grade}</p> : <input type='text'
+					<td>{student.grade ? <p>{student.grade}</p> : <input maxLength={2} type='text'
 					onChange={(e) => handleInputChange(student.userID, e.target.value)}/>}
 						</td>
 				</tr>

@@ -9,7 +9,7 @@ import { open } from '../../../redux/modalSlice';
 import { refresh } from '../../../redux/refreshSlice';
 
 function TextEditor() {
-	const role = useSelector(state => state.currentUser.role)
+	const {role} = JSON.parse(window.localStorage.getItem("user"));
 	const subjectName = useSelector(state => state.currentSubject.subjectName)
 	const {content, lessonTitle, updatedTitle, updatedDate} = useSelector(state => state.currentLesson)
 	const [value, setValue] = useState(content);

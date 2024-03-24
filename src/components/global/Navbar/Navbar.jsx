@@ -16,7 +16,7 @@ import ButtonInfo from '../NavbarButton/ButtonInfo/ButtonInfo'
 
 function Navbar() {
 	const dispatch = useDispatch();
-	const {role , profile} = useSelector(state => state.currentUser);
+	const {role , profile} = JSON.parse(window.localStorage.getItem("user"));
 	const navigate = useNavigate();
 
 	function displayButtons(role) {
@@ -48,7 +48,7 @@ function Navbar() {
 		{displayButtons(role)}
 		<div className='navbar-info'>
 			<img className='navbar-profil btn' src={profile} onClick={() => navigate("/profile")}/>
-			<img className='navbar-logout btn' src={Logout} onClick={() =>{  dispatch(logout()); window.location.reload(false); dispatch(displayMessage({message: 'Déconnexion réussie.'})); } } />
+			<img className='navbar-logout btn' src={Logout} onClick={() =>{ navigate("/login"); window.localStorage.removeItem("user"); dispatch(displayMessage({message: 'Déconnexion réussie.'})); } } />
 		</div>
 	</nav>
   )

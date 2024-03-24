@@ -15,7 +15,7 @@ import {Provider} from 'react-redux'
 import store from './redux/store'
 import App from './App';
 import Profile from './components/containers/Profile/Profile';
-import Grades from './components/global/grades/Grades';
+import Grades from './components/global/Grades/Grades';
 
 
 const router = createBrowserRouter([

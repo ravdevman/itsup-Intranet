@@ -14,7 +14,7 @@ function Selector({title, date ,  componentType, onClick}) {
   const dispatch = useDispatch()
   const currentLesson = useSelector(state => state.currentLesson.lessonTitle)
   const currrentSubject = useSelector(state => state.currentSubject.subjectName)
-  const role = useSelector(state => state.currentUser.role)
+  const {role} =  JSON.parse(window.localStorage.getItem("user"));
   const [isClicked, setIsClicked] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 

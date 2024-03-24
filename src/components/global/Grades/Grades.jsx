@@ -6,7 +6,7 @@ import axios from 'axios';
 import { displayMessage } from '../../../redux/messageBoxSlice';
 import LoadingIndicator from '../../../assets/animated/loading-indicator.gif';
 function Grades() {
-	const user = useSelector(state => state.currentUser)
+	const user = JSON.parse(window.localStorage.getItem("user"));
 	const dispatch = useDispatch()
 	const [options, setOptions] = useState({
 		"years": [

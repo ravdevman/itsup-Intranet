@@ -27,7 +27,7 @@ const milestones = [
 ]
 
 function ProgressionContainer() {
-	const { yearID } = useSelector(state => state.currentUser)
+	const { yearID } = JSON.parse(window.localStorage.getItem("user"));
 
 	const setState = (index) => {
 		if (index + 1 ==  yearID) {

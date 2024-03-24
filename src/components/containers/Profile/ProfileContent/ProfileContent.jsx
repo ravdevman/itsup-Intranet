@@ -9,7 +9,7 @@ import { displayMessage } from '../../../../redux/messageBoxSlice'
 import axios from 'axios'
 import { setCurrentUser } from '../../../../redux/currentUserSlice'
 function ProfileContent() {
-	const user = useSelector(state => state.currentUser)
+	const user = JSON.parse(window.localStorage.getItem("user"));
 	const dispatch = useDispatch();
 	const [imageUploaded, setImageUploaded] = useState();
 	const [isUploadBtnDisabled, setIsUploadBtnDisabled] = useState(false);

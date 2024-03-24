@@ -6,7 +6,7 @@ import { open } from '../../../redux/modalSlice';
 import Arrow from '../../../assets/icons/arrow.png'
 function SelectorContainer({subjects, componentType}) {
 
-  const {role } = useSelector(state => state.currentUser)
+  const {role } = JSON.parse(window.localStorage.getItem("user"));
   const {subjectName} = useSelector(state => state.currentSubject)
   const dispatch = useDispatch();
   const [isMaximized, setIsMaximized] = useState(false);

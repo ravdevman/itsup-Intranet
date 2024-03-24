@@ -8,7 +8,7 @@ import { stopRefresh } from '../../../redux/refreshSlice';
 
 function MainContent() {
 	const currentSubject = useSelector(state => state.currentSubject.subjectName)
-	const user = useSelector(state => state.currentUser)
+	const user = JSON.parse(window.localStorage.getItem("user"));
 	const departmentID = user.departmentID;
 	const [subjects, setSubjects] = useState([]);
 	const [lessons, setLessons] = useState([]);

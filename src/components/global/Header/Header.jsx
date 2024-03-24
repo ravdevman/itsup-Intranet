@@ -6,7 +6,7 @@ import { setUpdatedInfo } from '../../../redux/currentLessonSlice'
 function Header() {
 	const lessons = useSelector(state => state.currentLesson)
 	const [isAnimated, setIsAnimated] = useState(false)
-	const role = useSelector(state => state.currentUser.role)
+	const {role} =  JSON.parse(window.localStorage.getItem("user"));
 	const dispatch = useDispatch()
 	const updatedTitleRef = useRef(lessons.lessonTitle)
 	const updatedDateRef = useRef(lessons.lessonDate)

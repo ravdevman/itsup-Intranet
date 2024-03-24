@@ -49,6 +49,7 @@ function Login() {
 	  .then(function (response) {
 		const data = response.data.user;
 		console.log(data);
+		window.localStorage.setItem("user", JSON.stringify(data));
 		dispatch(setCurrentUser(data))
 		dispatch(displayMessage({message: "Connexion réussie."}))
 		navigate('/courses');

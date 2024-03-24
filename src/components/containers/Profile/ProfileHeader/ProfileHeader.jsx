@@ -1,19 +1,20 @@
 import React from 'react'
 import './profileHeader.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../../../redux/currentUserSlice'
 import { displayMessage } from '../../../../redux/messageBoxSlice'
+import { useNavigate } from 'react-router-dom'
 
 function ProfileHeader() {
-  const user = useSelector(state => state.currentUser)
+  const user = JSON.parse(window.localStorage.getItem("user"));
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   return (
 	<div className='profileHeader'>
     <div className='profileHeader-info'>
       <img src={user.profile} />
       <h3>{user.name + " " +  user.lastname}</h3>
     </div>
-    <button onClick={() => { dispatch(logout()); dispatch(displayMessage({message: 'Déconnexion réussie.'})); window.location.reload(false)}}>Se Deconnecter</button>
+    <button onClick={() => { navigate("/login"); window.localStorage.removeItem("user"); dispatch(displayMessage({message: 'Déconnexion réussie.'}))}}>Se Deconnecter</button>
   </div>
   )
 }

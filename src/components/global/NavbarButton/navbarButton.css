@@ -14,6 +14,10 @@
 	background-color: var(--red);
 }
 
+.navbar-button-selected {
+	background-color: var(--red);
+}
+
 .navbar-button:hover .buttonInfo {
 	display: block;
 }

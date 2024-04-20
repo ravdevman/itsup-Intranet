@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 import { displayMessage } from '../../../redux/messageBoxSlice';
 import LoadingIndicator from '../../../assets/animated/loading-indicator.gif';
+import TitleDecorator from '../TitleDecorator/TitleDecorator';
 function Grades() {
 	const user = JSON.parse(window.localStorage.getItem("user"));
 	const dispatch = useDispatch()
@@ -158,7 +159,9 @@ const displayGradeSection = () => {
 		<div className='grades-teacher-container'>
 			<div className='grades-teacher-container-sort-section'>
 				<form onSubmit={handleSubmitSearch}>
-					<h2>Trier par :</h2>
+					<TitleDecorator>
+						<h2>Trier par :</h2>
+					</TitleDecorator>
 					<label>Année *</label>
 					<select name="year" required>
 						{options.years.map((year ,index ) => <option key={index} value={year}>{year}</option>)}
@@ -185,13 +188,14 @@ const displayGradeSection = () => {
 					<select name="subjects" required>
 						{options.subjects.map((subject,index) => <option key={index} value={subject}>{subject}</option>)}
 					</select>
-
 					<button>Rechercher</button>
 				</form>
 				{/*<img src={LoadingIndicator} height={64} width={64} />*/}
 			</div>
 			<div className='grades-teacher-container-list-section'>
-				<h2>List :</h2>
+				<TitleDecorator>
+					<h2>List :</h2>
+				</TitleDecorator>
 				<table>
 				<tr>
 					<th>ID</th>

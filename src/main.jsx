@@ -43,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "grades",
         element: <Grades />
+      },
+      {
+        path: "quiz",
+        element: <div></div>
       }
     ],
   },

@@ -1,0 +1,13 @@
+.title-decorator-container {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title-decorator {
+	height: 10px;
+	width: 10px;
+	border: solid 3px var(--red);
+	transform: rotate(10deg);
+	margin-right: 10px;
+}

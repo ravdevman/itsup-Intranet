@@ -36,9 +36,10 @@ function MainContent() {
 			  .catch((error) => {
 				console.error("API request error: ", error);
 			  });
+			  console.log("IM caled")
 		} 
 
-	}, [user])
+	}, [user, departmentID])
 	// fetch lesson from subject selected
 	useEffect(() => {
 		axios.get(`http://localhost:3000/api/lessons?subjectName=${currentSubject}`)

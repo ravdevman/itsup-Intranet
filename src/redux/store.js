@@ -5,6 +5,7 @@ import currentUserReducer from './currentUserSlice'
 import messageBoxReducer from './messageBoxSlice'
 import modalReducer from './modalSlice'
 import refreshReducer from './refreshSlice'
+import currentTabReducer from './currentTabSlice'
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
   currentUser: currentUserReducer,
   messageBox: messageBoxReducer,
   modal: modalReducer,
-  refresh: refreshReducer
+  refresh: refreshReducer,
+  currentTab: currentTabReducer
   }
 })

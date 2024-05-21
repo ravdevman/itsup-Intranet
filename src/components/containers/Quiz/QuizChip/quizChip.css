@@ -1,0 +1,72 @@
+.quiz-chip-container {
+	display: flex;
+	align-items: flex-start;
+	background-color: var(--light-gray);
+	width: fit-content;
+	justify-content: space-between;
+	padding: 10px;
+	border-radius: 10px;
+	cursor: default;
+	height: 55px;
+	flex-direction: column;
+	transition: 0.5s ease;
+	overflow-y: hidden;
+}
+.quiz-chip-container-details {
+	display: flex;
+	align-items: flex-start;
+}
+
+.quiz-chip-container-details-desc {
+	margin: 0 5px;
+}
+
+.quiz-chip-container-details-edit {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 55px;
+}
+
+.quiz-chip-container-info {
+	margin: 10px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.quiz-chip-container-info-box {
+	position: relative;
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px 7px;
+	width: 70%;
+	height: 20px;
+	margin: 5px 0;
+}
+
+.quiz-chip-container-info-box-chip {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: var(--red);
+	height: 20px;
+	padding: 10px 10px;
+	border-radius: 10px;
+	color: white;
+	width: 30px;
+}
+
+.quiz-chip-container-info button {
+	width: 80%;
+}
+
+.quiz-chip-container:hover {
+	height: 200px;
+}
+

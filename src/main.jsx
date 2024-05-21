@@ -16,6 +16,8 @@ import store from './redux/store'
 import App from './App';
 import Profile from './components/containers/Profile/Profile';
 import Grades from './components/global/Grades/Grades';
+import Quiz from './components/containers/Quiz/Quiz';
+import QuizNew from './components/containers/QuizNew/QuizNew';
 
 
 const router = createBrowserRouter([
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
       },
       {
         path: "quiz",
+        element: <Quiz />,
+      },
+      {
+        path: "quiz/new",
+        element: <QuizNew />
+      },
+      {
+        path: "quiz/:id",
         element: <div></div>
       }
     ],

@@ -1,0 +1,36 @@
+.red-square-background {
+	position: absolute;
+	border: 5px solid var(--red);
+	top: 30%;
+	right: 20%;
+	z-index: -1;
+	opacity: 20%;
+	animation-name: float;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	transform-origin: center;
+}
+
+.black-circle-background {
+	position: absolute;
+	border-radius: 50%;
+	background-color: var(--black);
+	z-index: -1;
+	opacity: 20%;
+	animation-name: float;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	transform-origin: center;
+}
+
+
+
+
+@keyframes float {
+    0%, 100% {
+        transform: rotate(var(--rotate-start, 45deg)) translateY(0px);
+    }
+    50% {
+        transform: rotate(var(--rotate-mid, 70deg)) translateY(-30px);
+    }
+}

@@ -1,0 +1,32 @@
+
+.step-block-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 0 5px;
+}
+
+
+.step-block-title {
+	margin-bottom: 5px;
+	font-weight: 500;
+	font-size: small;
+}
+.step-block-number {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--dark-gray);
+	border-radius: 10px;
+	padding: 10px;
+	width: 30px;
+	font-weight: bold;
+}
+.step-block-selected {
+	background-color: var(--red);
+}
+
+.step-block-not-selected {
+	background-color: var(--gray);
+}

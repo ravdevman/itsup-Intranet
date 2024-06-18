@@ -18,6 +18,7 @@ import Profile from './components/containers/Profile/Profile';
 import Grades from './components/global/Grades/Grades';
 import Quiz from './components/containers/Quiz/Quiz';
 import QuizNew from './components/containers/QuizNew/QuizNew';
+import QuizAnswer from './components/containers/QuizAnswer/QuizAnswer';
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,13 @@ const router = createBrowserRouter([
       {
         path: "quiz/new",
         element: <QuizNew />
+      },
+      {
+        path: "quiz/:quizId",
+        element: <QuizAnswer />,
+        loader: ({ params }) => {
+          return params.quizId;
+        }
       },
       {
         path: "quiz/:id",

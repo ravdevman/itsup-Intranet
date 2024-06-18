@@ -77,7 +77,7 @@
 
 .quiz-main-teacher-filter-input-date-container {
 	display: flex;
-	justify-content: first flex-start;
+	justify-content: flex-start;
 	align-items: flex-start;
 	width: fit-content;
 }

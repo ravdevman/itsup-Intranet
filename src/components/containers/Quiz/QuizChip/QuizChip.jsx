@@ -3,9 +3,13 @@ import './quizChip.css'
 import Question from '.././../../../assets/icons/questions.png'
 import frLocale from 'date-fns/locale/fr';
 import { format } from 'date-fns';
+import { USER_TYPE } from '../../../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
+function QuizChip({quiz, type}) {
+	const navigate = useNavigate();
+	console.log('quiz id', quiz)
 
-function QuizChip({quiz}) {
   return (
 	<div className='quiz-chip-container'>
 		<div className='quiz-chip-container-details'>
@@ -32,7 +36,10 @@ function QuizChip({quiz}) {
 					<h6>{quiz.participantCount}</h6>
 				</div>
 			</div>
-			<button>Voir les Résultats</button>
+			{type == USER_TYPE.TEACHER ?
+			<button >Voir les Résultats</button> :
+			<button onClick={() => navigate(`/quiz/${quiz.quizID}`) }>Repondre</button> 
+			}
 		</div>
 	</div>
   )

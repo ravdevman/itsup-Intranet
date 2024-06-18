@@ -4,13 +4,14 @@ import TitleDecorator from '../../global/TitleDecorator/TitleDecorator'
 import QuizChip from './QuizChip/QuizChip'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { USER_TYPE } from '../../../utils/constants';
 
 function Quiz() {
 	const user = JSON.parse(window.localStorage.getItem("user"));
 	const [quizzes, setQuizzes] = useState()
 	const navigate = useNavigate()
 	useEffect(() => {
-		if (user.role == 'Teacher'){
+		if (user.role == USER_TYPE.TEACHER){
 			axios
 			  .get(`http://localhost:3000/api/teacherQuizzes?userId=${user.userID}`)
 			  .then((response) => {
@@ -20,7 +21,93 @@ function Quiz() {
 				console.error("API request error: ", error);
 			  });
 		} 
+
+		if (user.role == USER_TYPE.STUDENT){
+			axios
+			  .get(`http://localhost:3000/api/studentQuizzes?userId=${user.userID}`)
+			  .then((response) => {
+				setQuizzes(response.data.quizzes);
+			  })
+			  .catch((error) => {
+				console.error("API request error: ", error);
+			  });
+		} 
 	}, [])
+
+
+	const renderContent = () => {
+		if (user.role == USER_TYPE.TEACHER) {
+			return (
+				<div className='quiz-main-teacher-container'>
+							<div className='quiz-main-teacher-title'>
+									<TitleDecorator>
+										<h2>List de vos QCM :</h2>
+									</TitleDecorator>
+							</div>
+							<div className='quiz-main-teacher-filter-container'>
+								<form>
+									<div className='quiz-main-teacher-filter-input'>
+										<label>Choisissez La Matiere</label>
+										<select>
+											<option >Choisissez la matiere</option>
+										</select>
+									</div>
+									<div className='quiz-main-teacher-filter-input'>
+										<label>Choisissez La Matiere</label>
+										<select>
+											<option >Choisissez la matiere</option>
+										</select>
+									</div>
+									<div className='quiz-main-teacher-filter-input'>
+										<label>Choisissez Date début - Date fin</label>
+										<div className='quiz-main-teacher-filter-input-date-container'>
+												<input type='date' ></input>
+												<input type='date' ></input>
+										</div>
+									</div>
+									<div className='quiz-main-teacher-filter-input validate'>
+										<button>Valider</button>
+									</div>
+								</form>
+
+							</div>
+							<div className='quiz-main-teacher-quiz-chip-container'>
+								{quizzes && quizzes.map((quiz) => <QuizChip key={quiz.quizID} quiz={quiz} type={USER_TYPE.TEACHER} />)}
+								<button onClick={() => navigate("/quiz/new")}>
+									+
+								</button>
+							</div>
+						</div>
+			)
+		}
+		if (user.role == USER_TYPE.STUDENT) {
+			return (
+				<div className='quiz-main-teacher-container'>
+					<div className='quiz-main-teacher-title'>
+							<TitleDecorator>
+								<h2>List des QCM en cours :</h2>
+							</TitleDecorator>
+					</div>
+					<div className='quiz-main-teacher-filter-container'>
+								<form>
+									<div className='quiz-main-teacher-filter-input'>
+										<label>Choisissez La Matiere</label>
+										<select>
+											<option >Choisissez la matiere</option>
+										</select>
+									</div>
+									<div className='quiz-main-teacher-filter-input validate'>
+										<button>Valider</button>
+									</div>
+								</form>
+					</div>
+					<div className='quiz-main-teacher-quiz-chip-container'>
+						{quizzes && quizzes.length > 0 ? quizzes.map((quiz) => <QuizChip key={quiz.quizID} quiz={quiz} type={USER_TYPE.STUDENT} />) : <p>Aucun QCM n'est disponible.</p>}
+					</div>
+				</div>
+			)
+		}
+	}
 
 	
   return (
@@ -28,46 +115,7 @@ function Quiz() {
 		<div className='quiz-main-header'>
 			<h2>Question Choix multiple</h2>
 		</div>
-		<div className='quiz-main-teacher-container'>
-			<div className='quiz-main-teacher-title'>
-					<TitleDecorator>
-						<h2>List de vos QCM :</h2>
-					</TitleDecorator>
-			</div>
-			<div className='quiz-main-teacher-filter-container'>
-				<form>
-					<div className='quiz-main-teacher-filter-input'>
-						<label>Choisissez La Matiere</label>
-						<select>
-							<option >Choisissez la matiere</option>
-						</select>
-					</div>
-					<div className='quiz-main-teacher-filter-input'>
-						<label>Choisissez La Matiere</label>
-						<select>
-							<option >Choisissez la matiere</option>
-						</select>
-					</div>
-					<div className='quiz-main-teacher-filter-input'>
-						<label>Choisissez Date début - Date fin</label>
-						<div className='quiz-main-teacher-filter-input-date-container'>
-								<input type='date' ></input>
-								<input type='date' ></input>
-						</div>
-					</div>
-					<div className='quiz-main-teacher-filter-input validate'>
-						<button>Valider</button>
-					</div>
-				</form>
-
-			</div>
-			<div className='quiz-main-teacher-quiz-chip-container'>
-				{quizzes && quizzes.map((quiz) => <QuizChip key={quiz.quizID} quiz={quiz} />)}
-				<button onClick={() => navigate("/quiz/new")}>
-					+
-				</button>
-			</div>
-		</div>
+		{renderContent()}
 	</div>
   )
 }

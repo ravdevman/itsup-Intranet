@@ -27,6 +27,7 @@ function Navbar() {
 					<li><NavbarButton image={Calendar} onClick={() => navigate("/calendar")} label="Calendrier"/></li>
 					<li><NavbarButton image={StudentCenter} onClick={() => navigate("/courses")} label="Cours"/></li>
 					<li><NavbarButton image={StudentGrade} onClick={() => navigate("/grades")} label="Notes"/></li>
+					<li><NavbarButton image={QuizTeacher} onClick={() => navigate("/quiz")} label="QCM"/></li>
 				</ul>
 			)
 		}

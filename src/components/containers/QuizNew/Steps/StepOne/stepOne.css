@@ -1,0 +1,28 @@
+.step-one-quiz-container {
+	width: 19rem;
+}
+
+.step-one-quiz-container label {
+	margin-bottom: 5px;
+}
+
+.step-one-quiz-container select{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.step-one-quiz-container input {
+	margin-bottom: 10px;
+}
+
+
+.step-one-quiz-container-date {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.step-one-quiz-container-date input {
+	width: 40%;
+}

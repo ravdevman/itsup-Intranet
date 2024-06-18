@@ -1,0 +1,9 @@
+.step-three-quiz-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.step-three-quiz-container input {
+	margin: 10px 0;
+}

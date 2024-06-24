@@ -18,10 +18,10 @@ function StepThree({handleSubmit}) {
   return (
 	<form className='step-three-quiz-container' onSubmit={handleSubmitData}>
 		<TitleDecorator>
-			<label>Duree *</label>
+			<label>Durée *</label>
 		</TitleDecorator>
 		<input type='text' name='time' required/>
-		<button onClick={handleSubmit}>Finir</button>
+		<button>Finir</button>
 	</form>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import './dashboard.css'
-import Navbar from '../../components/global/navbar/Navbar'
+import Navbar from '../../components/global/Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
 import FullModal from '../../components/global/FullModal/FullModal'
 import { useSelector } from 'react-redux'

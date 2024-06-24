@@ -36,7 +36,6 @@ function MainContent() {
 			  .catch((error) => {
 				console.error("API request error: ", error);
 			  });
-			  console.log("IM caled")
 		} 
 
 	}, [user, departmentID])

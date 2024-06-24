@@ -41,21 +41,21 @@ function Quiz() {
 				<div className='quiz-main-teacher-container'>
 							<div className='quiz-main-teacher-title'>
 									<TitleDecorator>
-										<h2>List de vos QCM :</h2>
+										<h2>Liste de vos QCM :</h2>
 									</TitleDecorator>
 							</div>
 							<div className='quiz-main-teacher-filter-container'>
 								<form>
 									<div className='quiz-main-teacher-filter-input'>
-										<label>Choisissez La Matiere</label>
+										<label>Choisissez une matière</label>
 										<select>
-											<option >Choisissez la matiere</option>
+											<option >Choisissez une matière</option>
 										</select>
 									</div>
 									<div className='quiz-main-teacher-filter-input'>
-										<label>Choisissez La Matiere</label>
+										<label>Choisissez une classe</label>
 										<select>
-											<option >Choisissez la matiere</option>
+											<option >Choisissez une classe</option>
 										</select>
 									</div>
 									<div className='quiz-main-teacher-filter-input'>
@@ -85,15 +85,15 @@ function Quiz() {
 				<div className='quiz-main-teacher-container'>
 					<div className='quiz-main-teacher-title'>
 							<TitleDecorator>
-								<h2>List des QCM en cours :</h2>
+								<h2>Liste des QCM en cours :</h2>
 							</TitleDecorator>
 					</div>
 					<div className='quiz-main-teacher-filter-container'>
 								<form>
 									<div className='quiz-main-teacher-filter-input'>
-										<label>Choisissez La Matiere</label>
+										<label>Choisissez une matière</label>
 										<select>
-											<option >Choisissez la matiere</option>
+											<option >Choisissez une matière</option>
 										</select>
 									</div>
 									<div className='quiz-main-teacher-filter-input validate'>
@@ -113,7 +113,7 @@ function Quiz() {
   return (
 	<div className='quiz-main'>
 		<div className='quiz-main-header'>
-			<h2>Question Choix multiple</h2>
+			<h2>Question à choix multiple</h2>
 		</div>
 		{renderContent()}
 	</div>

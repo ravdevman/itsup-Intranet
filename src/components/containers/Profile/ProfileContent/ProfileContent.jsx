@@ -56,7 +56,7 @@ function ProfileContent() {
 		</ProfileModal>
 		<ProfileModal>
 			<div className='profileContent-details'>
-				<h3 className='profileContent-title'>Details</h3>
+				<h3 className='profileContent-title'>Détails</h3>
 				<form>
 					<label>Nom</label >
 					<input type='text' readOnly value={user.name} />

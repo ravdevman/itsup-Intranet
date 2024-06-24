@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: flex-start;
 	background-color: var(--light-gray);
-	width: fit-content;
+	width: 250px;
 	justify-content: space-between;
 	padding: 10px;
 	border-radius: 10px;
@@ -12,8 +12,10 @@
 	transition: 0.5s ease;
 	overflow-y: hidden;
 }
+
 .quiz-chip-container-details {
 	display: flex;
+	width: 100%;
 	align-items: flex-start;
 }
 
@@ -26,6 +28,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	height: 55px;
+	margin-left: auto;
 }
 
 .quiz-chip-container-info {
@@ -70,3 +73,7 @@
 	height: 200px;
 }
 
+.quiz-chip-responded {
+	opacity: 50%;
+	background-color: var(--green);
+}

@@ -3,15 +3,24 @@ import './quizChip.css'
 import Question from '.././../../../assets/icons/questions.png'
 import frLocale from 'date-fns/locale/fr';
 import { format } from 'date-fns';
-import { USER_TYPE } from '../../../../utils/constants';
+import { MODALS, USER_TYPE } from '../../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { open } from '../../../../redux/modalSlice';
 
 function QuizChip({quiz, type}) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	console.log('quiz id', quiz)
 
+
+	const handleSeeResult = () => {
+		dispatch(open({type : MODALS.QUIZ_RESULT, data: {quizID: quiz?.quizID}}))
+	}
+
   return (
-	<div className='quiz-chip-container'>
+	<div className={`quiz-chip-container ${type == USER_TYPE.STUDENT && quiz.participated == 1 ? "quiz-chip-responded" : null}`}>
 		<div className='quiz-chip-container-details'>
 			<img src={Question} />
 			<div className='quiz-chip-container-details-desc'>
@@ -25,7 +34,7 @@ function QuizChip({quiz, type}) {
 		</div>
 		<div className='quiz-chip-container-info'>
 			<div className='quiz-chip-container-info-box'>
-					<p>Duree</p>
+					<p>Durée</p>
 				<div className='quiz-chip-container-info-box-chip'>
 					<h6>{quiz.quizDuration} min</h6>
 				</div>
@@ -37,8 +46,9 @@ function QuizChip({quiz, type}) {
 				</div>
 			</div>
 			{type == USER_TYPE.TEACHER ?
-			<button >Voir les Résultats</button> :
-			<button onClick={() => navigate(`/quiz/${quiz.quizID}`) }>Repondre</button> 
+			<button onClick={handleSeeResult}>Voir les Résultats</button> :
+			quiz.participated == 0 ?
+			<button onClick={() => navigate(`/quiz/${quiz.quizID}`) }>Repondre</button>  : <button style={{cursor: "default"}}>{`${quiz?.quizGradePercentage ? quiz?.quizGradePercentage : 0}%`}</button>
 			}
 		</div>
 	</div>

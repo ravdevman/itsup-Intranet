@@ -4,6 +4,7 @@ import Selector from '../../global/Selector/Selector'
 import { useDispatch, useSelector } from 'react-redux';
 import { open } from '../../../redux/modalSlice';
 import Arrow from '../../../assets/icons/arrow.png'
+import { MODALS } from '../../../utils/constants';
 function SelectorContainer({subjects, componentType}) {
 
   const {role } = JSON.parse(window.localStorage.getItem("user"));
@@ -25,7 +26,7 @@ function SelectorContainer({subjects, componentType}) {
         title={getTitle(subject)} 
         date={getDate(subject)}/>
       ))}
-      {role == 'Teacher' && componentType == "lesson" && subjectName != "" ?   <button className='add-btn' onClick={() => dispatch(open({type : ""}))}>Ajouter une leçon</button> : null}
+      {role == 'Teacher' && componentType == "lesson" && subjectName != "" ?   <button className='add-btn' onClick={() => dispatch(open({type : MODALS.ADD_LESSON}))}>Ajouter une leçon</button> : null}
       {componentType == "lesson" && subjectName == "" ? <p className='info'>Aucune matière n'est sélectionner</p> : null}
 	</div>
   )

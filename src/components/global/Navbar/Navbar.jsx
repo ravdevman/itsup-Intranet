@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../../redux/currentUserSlice'
 import { displayMessage } from '../../../redux/messageBoxSlice'
 import ButtonInfo from '../NavbarButton/ButtonInfo/ButtonInfo'
+import { setCurrentTab } from '../../../redux/currentTabSlice'
 
 function Navbar() {
 	const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function Navbar() {
 		</div>
 		{displayButtons(role)}
 		<div className='navbar-info'>
-			<img className='navbar-profil btn' src={profile} onClick={() => navigate("/profile")}/>
+			<img className='navbar-profil btn' src={profile} onClick={() => {navigate("/profile");  dispatch(setCurrentTab("Profile"))}}/>
 			<img className='navbar-logout btn' src={Logout} onClick={() =>{ navigate("/login"); window.localStorage.removeItem("user"); dispatch(displayMessage({message: 'Déconnexion réussie.'})); } } />
 		</div>
 	</nav>

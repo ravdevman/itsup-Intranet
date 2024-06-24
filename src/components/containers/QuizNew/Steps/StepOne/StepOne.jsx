@@ -35,14 +35,14 @@ function StepOne({nextStep}) {
 	<form className='step-one-quiz-container' onSubmit={handleSubmit}>
 		<label>Titre du QCM *</label>
 		<input name='title' required/>
-		<label>Matiere *</label>
+		<label>Matière *</label>
 		<select name="subject" required>
 			<option value="">Choisissez votre matier</option>
 			{subjects && subjects.map(subject => (
 				<option value={subject.subjectID}>{subject.subjectName}</option>
 			))}
 		</select>
-		<label>Class *</label>
+		<label>Classe *</label>
 		<select name="classID" required>
 			<option value="1">Choisissez une classe</option>
 		</select>

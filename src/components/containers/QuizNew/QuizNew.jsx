@@ -43,6 +43,10 @@ function QuizNew() {
 			...prevData,
 			...data
 		}));
+		const newData = {
+			...currentData,
+			...data
+		}  
 		axios.post('http://localhost:3000/api/createQuiz', currentData)
 		.then(function (response) {
 			dispatch(displayMessage({message: "QCM ajouter avec succes"}))
@@ -52,7 +56,7 @@ function QuizNew() {
 		  });
 	}
 
-	console.log('current DATA == ', currentData)
+
   return (
 	<div className='quiz-new-main-container'>
 		<div className='quiz-new-main-header'>
@@ -66,9 +70,9 @@ function QuizNew() {
 
 		<div className='quiz-new-main-container-form'>
 			<div className='quiz-new-main-steps'>
-				<StepBlock title={'Details'} number={1} blockState={currentStep == STEPS.ONE ? STEP_BLOCK_STATE.SELECTED : currentStep > STEPS.ONE ? '' : STEP_BLOCK_STATE.NOT_SELECTED} />
+				<StepBlock title={'Détails'} number={1} blockState={currentStep == STEPS.ONE ? STEP_BLOCK_STATE.SELECTED : currentStep > STEPS.ONE ? '' : STEP_BLOCK_STATE.NOT_SELECTED} />
 				<StepBlock title={'Questions'} number={2} blockState={currentStep == STEPS.TWO ? STEP_BLOCK_STATE.SELECTED : currentStep > STEPS.TWO ? '' : STEP_BLOCK_STATE.NOT_SELECTED}/>
-				<StepBlock title={'Temp'} number={3} blockState={currentStep == STEPS.THREE ? STEP_BLOCK_STATE.SELECTED : currentStep > STEPS.THREE ? '' : STEP_BLOCK_STATE.NOT_SELECTED}/>
+				<StepBlock title={'Temps'} number={3} blockState={currentStep == STEPS.THREE ? STEP_BLOCK_STATE.SELECTED : currentStep > STEPS.THREE ? '' : STEP_BLOCK_STATE.NOT_SELECTED}/>
 			</div>
 
 			<div className='quiz-new-main-steps-content'>

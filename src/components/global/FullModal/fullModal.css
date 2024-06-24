@@ -40,3 +40,28 @@
 .fullModal-delete-form-btn-group button {
 	margin: 10px 20px;
 }
+
+
+.fullModal-quiz-student-container {
+	width: 90%;
+	border: var(--gray) 2px solid;
+	border-radius: 10px;
+	padding: 10px 5%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.fullModal-quiz-student-info-container {
+	margin: 5px 10px auto 5px;
+}
+
+.fullModal-quiz-student-container img {
+	border-radius: 10px;
+}
+
+.fullModal-quiz-student-grade {
+	margin-left: auto;
+	font-weight: bold;
+}

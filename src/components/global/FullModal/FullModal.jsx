@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './fullModal.css'
 import Modal from '../../containers/Modal/Modal'
 import Close from '../../../assets/icons/close.png'
@@ -8,11 +8,14 @@ import axios from 'axios'
 import { displayMessage } from '../../../redux/messageBoxSlice'
 import { refresh } from '../../../redux/refreshSlice'
 import { setCurrentLesson } from '../../../redux/currentLessonSlice'
+import { MODALS } from '../../../utils/constants'
 function FullModal() {
 	const dispatch = useDispatch()
 	const {subjectName} = useSelector(state => state.currentSubject)
 	const currentLesson = useSelector(state => state.currentLesson)
 	const type = useSelector(state => state.modal.type)
+	const data = useSelector(state => state.modal.data)
+	const [resultQuizRanking, setResultQuizRanking] = useState()
 	//const [type, setType] = useState("delete")
 	// on adding
 	function handleSubmit(e) {
@@ -48,10 +51,22 @@ function FullModal() {
 			dispatch(close())
 		  });
 	}
+
+	useEffect(() => {
+		if (type == MODALS.QUIZ_RESULT) {
+			axios.get(`http://localhost:3000/api/quizResult?quizId=${data.quizID}`)
+			.then((response) => {
+				setResultQuizRanking(response.data.result)
+			  })
+			  .catch((error) => {
+			  console.error("API request error: ", error);
+			  });
+		}
+	}, [])
   return (
 	<div className='fullModal'>
 		<Modal>
-			{type == 'delete' ?
+			{type == MODALS.DELETE_LESSON ?
 			<div className='fullModal-ajouter'>
 				<div className='fullModal-ajouter-title'>
 					<h2>Suprimer une leçon</h2>
@@ -66,8 +81,8 @@ function FullModal() {
 					</div>
 				</div>
 			</div>
-			:
-			<div className='fullModal-ajouter'>
+			: null}
+			{type == MODALS.ADD_LESSON ? <div className='fullModal-ajouter'>
 				<div className='fullModal-ajouter-title'>
 					<h2>Ajouter une leçon</h2>
 					<img className='fullModal-ajouter-title-close-btn' src={Close} onClick={() => dispatch(close())} />
@@ -82,7 +97,28 @@ function FullModal() {
 					<button>Ajouter</button>
 				</form>
 			</div>
-		}
+		  : null}
+		  {type == MODALS.QUIZ_RESULT ? <div className='fullModal-ajouter'>
+				<div className='fullModal-ajouter-title'>
+					<h2>Résultat</h2>
+					<img className='fullModal-ajouter-title-close-btn' src={Close} onClick={() => dispatch(close())} />
+				</div>
+				<div>
+					{resultQuizRanking?.map(student => (
+						<div key={student.studentID} className='fullModal-quiz-student-container'>
+							<img height={64} width={64} src={student.profile} />
+							<div className='fullModal-quiz-student-info-container'>
+								<h5>{student.name + " " + student.lastname}</h5>
+								<h6>{student.className}</h6>
+							</div>
+							<div className='fullModal-quiz-student-grade' style={{
+								color: `${student.quizGradePercentage <= 50 ? "var(--red)" : "var(--green)" }`
+							}}>{student.quizGradePercentage}%</div>
+						</div>
+					))}
+				</div>
+			</div>
+		  : null}
 		</Modal>
 	</div>
   )
